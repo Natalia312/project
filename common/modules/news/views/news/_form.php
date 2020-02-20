@@ -23,8 +23,8 @@ use kartik\datetime\DateTimePicker;
         'format' => 'dd-M-yyyy hh:ii'
     ]
 ]); ?>
-        <?= $form->field($model, 'img')->textInput(['maxlength' => true]) ?>
-    <?= $form->field($model, 'short')->fileinput(['maxlength' => true]) ?>
+        <?= $form->field($model, 'img')->fileinput() ?>
+    <?= $form->field($model, 'short')->textInput(['maxlength' => true]) ?>
 <?= $form->field($model, 'text')->widget(\common\components\widgets\Redactor::className()) ?>
 
     <div class="form-group">
