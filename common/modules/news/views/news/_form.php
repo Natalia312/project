@@ -6,8 +6,11 @@ use kartik\datetime\DateTimePicker;
 
 use yii\helpers\ArrayHelper;
 use common\modules\news\models\Authors;
+use common\modules\news\models\Tags;
 use common\modules\news\assets\AuthorsAsset;
 AuthorsAsset::register($this);
+use common\modules\news\assets\TagsAsset;
+TagsAsset::register($this);
 
 /* @var $this yii\web\View */
 /* @var $model common\modules\news\models\News */
@@ -20,7 +23,12 @@ AuthorsAsset::register($this);
  <?= $form->field($model, 'title')->textInput(['maxlength' => true]) ?>
       <?= $form->field($model, 'author')->dropDownList(ArrayHelper::map(Authors::find()->all(), 'id', 'name')) ?>
 
-    <button type="button" class="btn btn-success" onclick="addAuthor()">Добавить автора</button>
+    <button type="button" class="btn btn-success" onclick="addAuthor()">Добавить автора</button>  
+
+
+     <?= Html::dropDownList('tags',null,ArrayHelper::map(Tags::find()->all(), 'ID', 'title')) ?>
+
+    <button type="button" class="btn btn-success" onclick="addTags()">Добавить тег</button>
        <?= $form->field($model, 'time')->widget(DateTimePicker::className(),[
     // 'name' => 'dp_1',
     'type' => DateTimePicker::TYPE_INPUT,

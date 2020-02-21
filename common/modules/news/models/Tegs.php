@@ -10,7 +10,7 @@ use Yii;
  * @property int $ID
  * @property string $title
  */
-class Tags extends \yii\db\ActiveRecord
+class Tegs extends \yii\db\ActiveRecord
 {
     /**
      * {@inheritdoc}
@@ -28,25 +28,16 @@ class Tags extends \yii\db\ActiveRecord
         return [
             [['title'], 'required'],
             [['title'], 'string', 'max' => 100],
-            ['title', 'trim'],
-            ['title', 'uniqValidation'],
         ];
     }
 
-    
-public function uniqValidation($attribute,$message){
-
-$model = self::find()->where(['title'=>$this->title])->count();
-if($model > 0){
-    $this->addError($attribute,'тег уже существует');
-}
-
-}
-
+    /**
+     * {@inheritdoc}
+     */
     public function attributeLabels()
     {
         return [
-            'id' => 'id',
+            'ID' => 'ID',
             'title' => 'Title',
         ];
     }
