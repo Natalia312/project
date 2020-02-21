@@ -6,6 +6,10 @@ use common\modules\roles\models\ACLRole;
 
 /* @var $this yii\web\View */
 /* @var $model common\modules\news\models\News */
+  
+
+use common\modules\news\assets\NewsAsset;
+NewsAsset::register($this);
 
 $this->title = Yii::t('ML', $model->title);
 $this->params['breadcrumbs'][] = ['label' => Yii::t('ML', 'News'), 'url' => ['index']];
@@ -33,7 +37,13 @@ $this->params['breadcrumbs'][] = $this->title;
             'text:ntext',
             'time',
             'author',
-            'img',
+            [
+                'attribute'=>'img',
+                'value' => function($model){
+                    return '<button type="button" class="show-img-class" onclick="showImage(\''.$model->img.'\')">Загрузить изображение</button><br><img id="news_img">';
+                },
+                'format' => 'raw'
+            ],
             'title',
             'short',
         ],
